@@ -37,7 +37,7 @@ public class Person implements UserDetails {
     private String email;
     @Column(name="password")
     @NotEmpty(message = "Пароль не должен быть пустым")
-    @Size(min = 5,max = 15,message = "Пароль должен быть длиной от 5 до 15 символов")
+    //@Size(min = 5,max = 15,message = "Пароль")
     private String password;
 
     @Column(name="full_name")

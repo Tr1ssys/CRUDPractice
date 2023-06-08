@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -54,7 +55,14 @@ public class PersonController {
         return "person-create";
     }
     @PostMapping("/person-create")
-    public String createPerson(Person person){
+    public String createPerson(@Valid Person person, BindingResult result, Model model){
+        if(result.hasErrors()){
+            return("person-create");
+        }
+        if(personService.findByEmail(person.getEmail()) != null){
+            model.addAttribute("existError","User already exists!");
+            return("person-create");
+        }
         personService.createPerson(person);
         return "redirect:/persons";
     }
@@ -69,8 +77,11 @@ public class PersonController {
     public String updatePerson(@Valid Person person, BindingResult result, RedirectAttributes redirectAttributes){
         if(result.hasErrors()){
             redirectAttributes.addAttribute("personId",person.getId());
-            return "redirect:/person-update/{personId}";
+            if(person.getFullName().length()<5) {
+                return "redirect:/person-update/{personId}?nameErr";
+            }
         }
+        person.setPassword(personService.findById(person.getId()).getPassword());
         personService.updatePerson(person);
         return "redirect:/persons";
     }

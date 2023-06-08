@@ -24,10 +24,11 @@
     <input readonly type="text" th:field="*{role}" id="role" placeholder="role">
     <br/>
     <input type="submit" value="Update">
-    <div>
-    <ul>
-        <li th:each="err : ${#fields.errors('fullName')}" th:text="${err}" class="error" />
-    </ul>
+    <div th:if="${param.nameErr}">
+        Ошибка имени.
+    </div>
+    <div th:if="${param.dateErr}">
+        Ошибка даты.
     </div>
 </form>
 </body>

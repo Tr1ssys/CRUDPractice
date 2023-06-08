@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Create new Person</title>
+    <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById("dateOfBirth").valueAsDate = new Date();
+    });
+</script>
 </head>
 <body>
 <h1>Создание нового юзера</h1>
 <form action="#" th:action="@{/person-create}" th:object="${person}" method="post">
     <label for="email">Email</label>
     <input type = "email" th:field="*{email}" id="email" placeholder="Email">
+    <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" >Ошибка почты</td>
     <label for="fullName">FirstName</label>
     <input type = "text" th:field="*{fullName}" id="fullName" placeholder="First Name">
+    <td th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" >Ошибка имени</td>
     <label for="dateOfBirth">Date of birth</label>
-    <input type = "date" th:field="*{dateOfBirth}" id="dateOfBirth">
+    <input type = "date" th:field="*{dateOfBirth}" id="dateOfBirth" >
+    <td th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" >Ошибка даты рождения</td>
     <label for="password">Password</label>
     <input type = "text" th:field="*{password}" id="password" placeholder="Password">
-    <input type="submit" value="Create new person">
+    <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" >Ошибка пароля</td>
+    <input type="submit" value="create new user">
 </form>
 </body>
 </html>
