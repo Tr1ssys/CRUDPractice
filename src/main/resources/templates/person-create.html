@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new Person</title>
+</head>
+<body>
+<h1>Создание нового юзера</h1>
+<form action="#" th:action="@{/person-create}" th:object="${person}" method="post">
+    <label for="email">Email</label>
+    <input type = "email" th:field="*{email}" id="email" placeholder="Email">
+    <label for="fullName">FirstName</label>
+    <input type = "text" th:field="*{fullName}" id="fullName" placeholder="First Name">
+    <label for="dateOfBirth">Date of birth</label>
+    <input type = "date" th:field="*{dateOfBirth}" id="dateOfBirth">
+    <label for="password">Password</label>
+    <input type = "text" th:field="*{password}" id="password" placeholder="Password">
+    <input type="submit" value="Create new person">
+</form>
+</body>
+</html>

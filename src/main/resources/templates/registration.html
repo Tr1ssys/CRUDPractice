@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById("dateOfBirth").valueAsDate = new Date();
+    });
+</script>
+</head>
+<body>
+<form action="#" th:action="@{/registration}" th:object="${person}" method="post">
+  <label for="email">Email</label>
+  <input type = "email" th:field="*{email}" id="email" placeholder="Email">
+  <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}" >Ошибка почты</td>
+  <label for="fullName">FirstName</label>
+  <input type = "text" th:field="*{fullName}" id="fullName" placeholder="First Name">
+  <td th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" >Ошибка имени</td>
+  <label for="dateOfBirth">Date of birth</label>
+  <input type = "date" th:field="*{dateOfBirth}" id="dateOfBirth" >
+  <td th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" >Ошибка даты рождения</td>
+  <label for="password">Password</label>
+  <input type = "text" th:field="*{password}" id="password" placeholder="Password">
+  <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" >Ошибка пароля</td>
+  <input type="submit" value="Registrate">
+</form>
+<div th:switch="${existError}">
+  <p th:case="null" th:remove="tag"></p>
+  <p th:case="*">User already exists!</p>
+</div>
+
+</body>
+</html>
