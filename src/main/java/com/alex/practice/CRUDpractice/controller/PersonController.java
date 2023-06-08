@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -65,7 +66,11 @@ public class PersonController {
     }
 
     @PostMapping("/person-update")
-    public String updatePerson(Person person){
+    public String updatePerson(@Valid Person person, BindingResult result, RedirectAttributes redirectAttributes){
+        if(result.hasErrors()){
+            redirectAttributes.addAttribute("personId",person.getId());
+            return "redirect:/person-update/{personId}";
+        }
         personService.updatePerson(person);
         return "redirect:/persons";
     }

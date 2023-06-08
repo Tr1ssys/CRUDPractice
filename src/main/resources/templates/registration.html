@@ -25,10 +25,15 @@
   <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" >Ошибка пароля</td>
   <input type="submit" value="Registrate">
 </form>
-<div th:switch="${existError}">
-  <p th:case="null" th:remove="tag"></p>
-  <p th:case="*">User already exists!</p>
+<!--<div th:switch="${existError}">-->
+<!--  <p th:case="null" th:remove="tag"></p>-->
+<!--  <p th:case="*">User already exists!</p>-->
+<!--</div>-->
+<div th:if="${existError != null}">
+  <p>User already exists!</p>
 </div>
-
+<div>
+  <p><a href="/login">login</a></p>
+</div>
 </body>
 </html>
