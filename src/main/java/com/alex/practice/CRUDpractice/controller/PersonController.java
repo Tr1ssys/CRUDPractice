@@ -92,4 +92,13 @@ public class PersonController {
         return "person-update";
     }
 
+    @GetMapping("person-entry/{id}")
+    public String showPersonEntryList(@PathVariable("id") Long id, Model model){
+        Person person = personService.findById(id);
+        if(!person.getEntryTimeList().isEmpty()){
+            model.addAttribute("person", person);
+        }
+        return "person-entry";
+    }
+
 }

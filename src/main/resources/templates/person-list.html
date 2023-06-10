@@ -21,6 +21,7 @@
     <td th:text="${row.dateOfBirth}">Date of Birth</td>
     <td><a th:href="@{person-update/{id}(id=${row.id})}">Edit</a></td>
     <td><a th:href="@{person-delete/{id}(id=${row.id})}">Delete</a></td>
+    <td><a th:href="@{person-entry/{id}(id=${row.id})}">Список времени входа</a></td>
   </tr>
   </tbody>
 </table>

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -16,12 +17,12 @@ public class EntryTime {
     private Long id;
 
     @Column(name = "entry_date")
-    private Date datetime;
+    private Timestamp datetime;
 
     public EntryTime(){
-        this.datetime = new Date(System.currentTimeMillis());
+        this.datetime = new Timestamp(System.currentTimeMillis());
     }
-    public EntryTime(Date date){
+    public EntryTime(Timestamp date){
         this.datetime = date;
     }
 }
