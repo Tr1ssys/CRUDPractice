@@ -10,7 +10,7 @@
   <tr>
     <th><a class="sorted" sd:pagination-sort="email" >Username</a></th>
     <th><a class="sorted" sd:pagination-sort="fullName" >First name</a></th>
-    <th>Last Name</th>
+    <th>Date of Birth</th>
     <th></th>
   </tr>
   </thead>
@@ -18,7 +18,7 @@
   <tr th:each="row : ${data}">
     <th scope="row" th:text="${row.email}">Username</th>
     <td th:text="${row.fullName}">Name</td>
-    <td th:text="${row.dateOfBirth}">Last Name</td>
+    <td th:text="${row.dateOfBirth}">Date of Birth</td>
     <td><a th:href="@{person-update/{id}(id=${row.id})}">Edit</a></td>
     <td><a th:href="@{person-delete/{id}(id=${row.id})}">Delete</a></td>
   </tr>
